@@ -17,6 +17,11 @@
     font-style: normal;
 }
 
+.em-gradient {
+    background-image: linear-gradient(to bottom, #631A61, #551653, #340E33, #010101);
+    height: 225px;
+}
+
 .round-image-padding {
     border-radius: 50%;
     border: 1.5px solid #ffffff;
