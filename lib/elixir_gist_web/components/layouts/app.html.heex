@@ -103,3 +103,17 @@
   <.flash_group flash={@flash} />
   <%= @inner_content %>
 </main>
+<footer class="h-[120px] w-full flex justify-center text-white px-1 py-20 font-brand font-regular text-xs">
+  <div class="w-full px-10">
+    <div class="border-t-[1px] border-white w-full"></div>
+    <div class="flex items-center space-x-2 py-6">
+      <img src="/images/em-logo.svg" alt="Elixir mentor logo" class="h-8 w-8" />
+      <p>© 2023 Elixir Mentor by Einer Zapata</p>
+      <div class="text-emLavender-dark px-4 space-x-2">
+        <a href={~p"/"} class="hover:underline">Terms</a>
+        <a href={~p"/"} class="hover:underline">Privacy</a>
+        <a href={~p"/"} class="hover:underline">About</a>
+      </div>
+    </div>
+  </div>
+</footer>
