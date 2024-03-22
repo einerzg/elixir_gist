@@ -51,7 +51,7 @@ defmodule ElixirGist.Gists do
   """
   def create_gist(user, attrs \\ %{}) do
     user
-    |> Ecto.assoc(:gists)
+    |> Ecto.build_assoc(:gists)
     |> Gist.changeset(attrs)
     |> Repo.insert()
   end

@@ -4,29 +4,39 @@
     Instantly share Elixir code, notes, and snippets
   </h1>
 </div>
-<.form for={@form} phx-change="validate" phx-submit="submit">
+<.form for={@form} phx-submit="create" phx-change="validate">
   <div class="justify-center px-28 w-full space-y-4 mb-10">
-    <.input field={@form[:description]} placeholder="Gist description" autocomplete="off" />
+    <.input
+      id="description_gist"
+      field={@form[:description]}
+      placeholder="Gist description"
+      autocomplete="off"
+      phx-debounce="blur"
+    />
     <div>
       <div class="flex p-2 items-center bg-emDark rounded-t-md border">
         <div class="w-[300px] mb-2">
           <.input
+            id="name_gist"
             field={@form[:name]}
             placeholder="Filename including extension ..."
             autocomplete="off"
+            phx-debounce="blur"
           />
         </div>
       </div>
       <.input
+        id="textarea_gist"
         type="textarea"
         field={@form[:markup_text]}
         class="textarea w-full rounded-b-md mt-0"
         placeholder="Insert code"
         autocomplete="false"
+        phx-debounce="blur"
       />
     </div>
     <div class="flex justify-end">
-      <.button class="create_button">Create Gist</.button>
+      <.button class="create_button" phx-disable-with="Creating...">Create Gist</.button>
     </div>
   </div>
 </.form>
