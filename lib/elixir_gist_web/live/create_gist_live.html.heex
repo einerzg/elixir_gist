@@ -1,6 +1,32 @@
-<.flash_group flash={@flash} />
+<.flash_group flash={@flash} id="flash_group_create" />
 <div class="em-gradient flex items-center justify-center">
   <h1 class="font-brand font-bold text-3xl text-white">
     Instantly share Elixir code, notes, and snippets
   </h1>
 </div>
+<.form for={@form} phx-change="validate" phx-submit="submit">
+  <div class="justify-center px-28 w-full space-y-4 mb-10">
+    <.input field={@form[:description]} placeholder="Gist description" autocomplete="off" />
+    <div>
+      <div class="flex p-2 items-center bg-emDark rounded-t-md border">
+        <div class="w-[300px] mb-2">
+          <.input
+            field={@form[:name]}
+            placeholder="Filename including extension ..."
+            autocomplete="off"
+          />
+        </div>
+      </div>
+      <.input
+        type="textarea"
+        field={@form[:markup_text]}
+        class="textarea w-full rounded-b-md mt-0"
+        placeholder="Insert code"
+        autocomplete="false"
+      />
+    </div>
+    <div class="flex justify-end">
+      <.button class="create_button">Create Gist</.button>
+    </div>
+  </div>
+</.form>
