@@ -28,6 +28,7 @@
       <.input
         id="textarea_gist"
         type="textarea"
+        phx-hook="EventTextarea"
         field={@form[:markup_text]}
         class="textarea w-full rounded-b-md mt-0"
         placeholder="Insert code"
