@@ -14,7 +14,7 @@
 //
 //     import "some-package"
 //
-
+import hljs from 'highlight.js';
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
 import 'phoenix_html';
 // Establish Phoenix Socket and LiveView configuration.
@@ -23,6 +23,36 @@ import { LiveSocket } from 'phoenix_live_view';
 import topbar from '../vendor/topbar';
 
 const Hook = {};
+
+Hook.Highligth = {
+  mounted() {
+    let name = this.el.getAttribute('data-name');
+    let codeBlock = this.el.querySelector('pre code');
+    if (codeBlock) {
+      codeBlock.className = codeBlock.className.replace(/language-\S+/g, '');
+      codeBlock.classList.add(`language-${this.getSyntaxType(name)}`);
+      hljs.highlightElement(codeBlock);
+    }
+  },
+  getSyntaxType(name) {
+    let extension = name.split('.').pop();
+    switch (extension) {
+      case 'text':
+        return 'text';
+      case 'json':
+        return 'json';
+      case 'heex':
+        return 'html';
+      case 'html':
+        return 'html';
+      case 'js':
+        return 'javascript';
+      default:
+        return 'elixir';
+    }
+  }
+};
+
 Hook.EventTextarea = {
   mounted() {
     this.el.addEventListener('keydown', (event) => {
