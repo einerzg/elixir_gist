@@ -74,10 +74,26 @@ form input[type="text"]:focus {
     @apply focus:outline-none focus:border-white focus:right-0
 }
 
+.syntax-area {
+    @apply bg-emSyntax border border-white h-auto;
+    border-top: none;
+    border-left: none;
+}
+
+.syntax-number {
+    @apply border border-white font-brand py-[28px] text-xs text-emDark-light bg-emSyntax h-auto w-[54px] text-right overflow-hidden resize-none;
+    border-right: none;
+    border-top: none;
+}
+
+.syntax-number:focus {
+    @apply focus:outline-none focus:border-white focus:right-0
+}
+
 .create_button {
-    @apply bg-emPurple border border-white font-brand font-regular text-black text-base
+    @apply bg-emPurple border border-white font-brand font-regular text-black text-base;
 }
 
 .create_button:hover {
-    @apply hover:bg-emPurple-dark text-emDark-light border-emDark-light
+    @apply hover:bg-emPurple-dark text-emDark-light border-emDark-light;
 }
