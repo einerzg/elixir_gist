@@ -22,6 +22,18 @@ import { Socket } from 'phoenix';
 import { LiveSocket } from 'phoenix_live_view';
 import topbar from '../vendor/topbar';
 
+function updateLineNumbers(value) {
+  const lineNumberText = document.querySelector('#line-numbers');
+
+  if (!lineNumberText) return;
+
+  const lines = value.split('\n');
+
+  const numbers = lines.map((_, index) => index + 1).join('\n') + '\n';
+
+  lineNumberText.value = numbers;
+}
+
 const Hook = {};
 
 Hook.Highligth = {
@@ -31,7 +43,9 @@ Hook.Highligth = {
     if (codeBlock) {
       codeBlock.className = codeBlock.className.replace(/language-\S+/g, '');
       codeBlock.classList.add(`language-${this.getSyntaxType(name)}`);
+      codeBlock.textContent = this.trimCodeBlock(codeBlock.textContent);
       hljs.highlightElement(codeBlock);
+      updateLineNumbers(codeBlock.textContent);
     }
   },
   getSyntaxType(name) {
@@ -50,6 +64,14 @@ Hook.Highligth = {
       default:
         return 'elixir';
     }
+  },
+  trimCodeBlock(content) {
+    const lines = content.split('\n');
+    if (lines.length > 2) {
+      lines.shift();
+      lines.pop();
+    }
+    return lines.join('\n');
   }
 };
 
@@ -65,6 +87,24 @@ Hook.EventTextarea = {
           '\t' +
           this.el.value.substring(end);
         this.el.selectionStart = this.el.selectionEnd = start + 1;
+      }
+    });
+  }
+};
+
+Hook.CopyToClipboard = {
+  mounted() {
+    this.el.addEventListener('click', (e) => {
+      const textToCopy = this.el.getAttribute('data-clickboar-gist');
+      if (textToCopy) {
+        navigator.clipboard
+          .writeText(textToCopy)
+          .then(() => {
+            console.log('Copy successfull');
+          })
+          .catch((err) => {
+            console.log('Error', err);
+          });
       }
     });
   }

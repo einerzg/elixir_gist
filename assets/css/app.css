@@ -75,19 +75,19 @@ form input[type="text"]:focus {
 }
 
 .syntax-area {
-    @apply bg-emSyntax border border-white h-auto;
+    @apply bg-emSyntax text-xs border border-white h-auto;
     border-top: none;
     border-left: none;
 }
 
 .syntax-number {
-    @apply border border-white font-brand py-[28px] text-xs text-emDark-light bg-emSyntax h-auto w-[54px] text-right overflow-hidden resize-none;
+    @apply border border-white font-brand py-[12px] text-xs text-emDark-light bg-emSyntax h-auto w-[54px] text-right overflow-hidden resize-none;
     border-right: none;
     border-top: none;
 }
 
 .syntax-number:focus {
-    @apply focus:outline-none focus:border-white focus:right-0
+    @apply focus:outline-none focus:border-white focus:right-0;
 }
 
 .create_button {
@@ -96,4 +96,12 @@ form input[type="text"]:focus {
 
 .create_button:hover {
     @apply hover:bg-emPurple-dark text-emDark-light border-emDark-light;
+}
+
+.interative-image-btn img:hover {
+    filter: brightness(80%);
+}
+
+.interative-image-btn img:active {
+    transform: scale(1.1);
 }
